@@ -1,0 +1,56 @@
+# Create the following hierarchy under your home directory:
+
+cd ~
+mkdir docs/
+touch docs/file3
+
+mkdir -p dir1/dir11
+cd dir1
+mkdir dir12
+touch dir11/file1 dir12/file2
+
+# Remove dir11 in one step
+rm -rf ~/dir1/dir11
+
+ # If the output of the command pwd was /home
+ #  Write the absolute and relative path for the file mycvfile:
+ # Absolute path:
+ /home/user/dir1/dir12/
+ # Relative path:
+ user/dir1/dir12/
+
+# What is the difference between rm and rmdir using man?
+--> man rm
+Remove files or directories
+--> man rmdir
+Remove empty directories
+
+# Copy the /etc/passwd file to your home directory making its name mypasswd
+cp /etc/passwd /home/ubuntu/mypasswd
+
+# Rename this new file to be oldpasswd
+ cd ~
+ mv mypasswd oldpasswd
+
+ # You are in /usr/bin, list three ways to go to your home directory
+ 1- cd ~
+ 2- cd ../../home/user
+ 3- cd /home/user
+
+ # Display the man page of passwd command
+ man passwd
+
+ # Display the man page of the passwd file
+  man /etc/passwd
+
+  # Display a list of all the commands that contain the keyword passw in their man page
+  man -k passwd
+
+# List all files in /usr/bin that start with letter w
+find /usr/bin -name w\*
+
+# Display the first 4 lines of /etc/passwd
+head -4 /etc/passwd
+
+# Display the last 7 lines of /etc/passwd
+tail -7 /etc/passwd
