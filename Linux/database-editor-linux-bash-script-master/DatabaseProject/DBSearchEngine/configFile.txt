@@ -1,0 +1,2 @@
+Current Working Directory:/d/Users/Work/DevOps - Training/Linux/database-editor-linux-bash-script-master/DatabaseProject/DBSearchEngine/bin
+Current Working Space:/d/Users/Work/DevOps - Training/Linux/database-editor-linux-bash-script-master/DatabaseProject/DBSearchEngine/Databases

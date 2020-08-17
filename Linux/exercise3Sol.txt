@@ -1,0 +1,132 @@
+# Using Sed Utility
+# -----------------
+
+# 1- Display the lines that contain the word "lp" in /etc/passwd file
+
+sed -n '/lp/p' /etc/passwd 
+
+# 2- Display /etc/passwd file except the third line
+
+sed '3d' /etc/passwd 
+
+# 3- Display /etc/passwd file except the last line 
+
+sed '$d' /etc/passwd
+
+# 4- Display /etc/passwd file except the lines that contain the word "lp"
+
+sed '/lp/d' /etc/passwd
+
+# 5- Substitute all the words that contain "lp" with "mylp" in /etc/passwd file
+
+sed -i 's/lp/mylp/gp' /etc/passwd 
+
+
+# Using awk utility 
+# -----------------
+
+# 1- Print full name (comment) of all users in the system 
+
+awk -F: '{print $5}' /etc/passwd
+
+# 2- Print login, full name (comment) and home directory of all users.
+# ( Print each line preceeded by a line number) 
+
+awk -F: '{print NR,$1,$5,$6}' /etc/passwd
+
+# 3- Print login, uid and full name (comment) of those uid is greater than 500 
+
+awk -F: '{if($3>500)print $1,$3,$5}' /etc/passwd
+
+# 4- Print login, uid and full name (comment) of those uid is exactly 500 
+
+awk -F: '{if($3==500)print $1,$3,$5}' /etc/passwd
+
+# 5- Print line from 5 to 15 from /etc/passwd 
+
+awk '{if(NR>=5 && NR<=15) print $0}'
+
+# 6- Print all information about greatest uid. 
+
+awk -F: '{if(maxID<$3)maxID=$3;maxRecord=$0}END{print maxRecord}' /etc/passwd 
+
+# 7- Get the sum of all accounts id's. 
+awk -F: '{sum+=$3}END{print sum}' /etc/passwd
+
+# Scripting
+# ---------
+
+# Create a script that asks for user name then send a greeting to him. 
+
+nano helloUser
+# ========================
+#!/bin/bash
+echo "What is your name?"
+read name
+echo "Hello $name"
+# ========================
+
+# Create a script called sl that calls another script s2 where: 
+# 	• In sl there is a variable called x, it's value is 5 
+# 	• Try to print the value of x in s2 by two different ways. 
+
+nano s1
+# ========================
+#!/bin/bash
+x=5
+. ./s2
+# ========================
+
+nano s2
+# ========================
+#!/bin/bash
+echo "$x"
+# ========================
+
+
+# ---- OR ----
+
+nano s1
+# ========================
+#!/bin/bash
+x=5
+./s2 $x
+# ========================
+
+nano s2
+# ========================
+#!/bin/bash
+echo "$1"
+# ========================
+
+# Create a script called mycd where: 
+# 	• It changed directory to the user home directory, if it is called without arguments.
+# 	• Otherwise, it change directory to the given directory. 
+
+nano mycd
+# ========================
+#!/bin/bash
+if test $# -eq 0
+then
+cd ~
+else
+cd $1
+fi
+# ======================== 
+# N.B. This script will need to be sourced
+
+# Create a script called myls where: 
+# 	• It lists the current directory, if it is called without arguments. 
+# 	• Otherwise, it lists the given directory 
+
+nano myls
+# ========================
+#!/bin/bash
+if test $# -eq 0
+then
+ls
+else
+ls $1
+fi
+# ======================== 
+ 

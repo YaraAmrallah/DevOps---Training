@@ -1,0 +1,107 @@
+# Create a user account with the following attribute: 
+# username: islam 
+# Fullname/comment: Islam Askar
+# Password: islam 
+
+sudo su
+# enter password
+adduser islam 
+# enter new password then retype: 
+islam
+islam
+# Full Name[]:
+Islam Askar
+# Press enter 4 times
+Y
+
+# Create a user account with the following attribute: 
+# username: baduser
+# Fullname/comment: Bad User
+# Password: baduser
+
+useradd baduser -c "Bad User"
+passwd baduser
+baduser
+baduser
+
+# Create a supplementary (Secondary) group called pgroup with group ID of 3000
+
+addgroup pgroup
+groupmod -g 3000 pgroup
+
+# Create a supplementary group called badgroup
+
+addgroup badgroup
+
+# Add islam user to the pgroup as a supplementary group 
+
+usermod -aG pgroup islam 
+
+# Modify the password of islam's account to password 
+
+passwd islam 
+password
+password
+
+# Modify islam's account so the password expires after 30 days 
+
+chage -d 30 islam
+
+# Lock baduser account so he can't log in 
+
+usermod -L baduser
+
+# delete baduser account 
+
+userdel -r baduser
+
+# Create a folder called myteam in your home directory
+
+su yara 
+mkdir myteam  
+
+# and change its permissions to read only for the owner
+
+chmod u=r myteam 
+
+# Log out and log in with another user 
+
+su islam 
+#type password
+
+# try to access by cd command the folder myteam
+cd /home/yara/myteam
+---> bash: cd: myteam: Permission denied
+
+# Make a copy of /etc/passwd file and name it oldpasswd 
+cp /etc/passwd /home/yara/mySpace
+mv passwd oldpasswd 
+
+# and change the permissions of oldpasswd file 
+# to give owner read and write permissions 
+# and for group write and execute only for the others (using chmod in 2 different ways)
+chmod u=rw oldpasswd 
+chmod g=w oldpasswd
+chmod o=x oldpasswd 
+
+OR
+
+chmod 621 olpasswd
+
+# create file with permission 444. Try to edit it and to remove it? Note what happened
+touch file444
+chmod 444 file444
+rm file444
+rm: remove write-protected regular empty file 'file444'? Y
+
+# Create a Bash shell alias named ls  for the "ls -l" command 
+alias ls='ls -l'
+
+# How can you list the value of a specific variable?
+var=5
+echo $var
+# List all environment variables for the bash shell
+env
+# Print all users home directory on your system and sort them alphabetically 
+ls /home 
+
